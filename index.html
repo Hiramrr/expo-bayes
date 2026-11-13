@@ -63,6 +63,10 @@ strong{font-weight:500;color:var(--ink)}
 .row{display:grid;grid-template-columns:var(--c,300px) 1fr;gap:40px;padding:24px 0;border-bottom:1px solid var(--line);align-items:baseline}
 .row .k{font-family:var(--mono);font-size:29px;color:var(--ink)}
 .row .k small{display:block;font-size:20px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink-3);margin-top:6px}
+.drawbacks .row{padding:14px 0;align-items:start}
+.drawbacks h2{font-family:var(--sans);font-size:30px;line-height:1.3;font-weight:500;letter-spacing:0;text-transform:none;color:var(--ink);margin-bottom:6px}
+.drawbacks p{font-size:27px;line-height:1.4}
+.drawbacks .example{font-size:23px;color:var(--ink-3);margin-top:6px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-left:1px solid var(--line);margin-top:40px}
 .cell{position:relative;padding:30px 36px 34px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
 .cell h2{margin-bottom:14px;color:var(--ink)}
@@ -480,23 +484,13 @@ html.light .wchips span.no{color:#fff}
   <!-- 9 -->
   <section class="slide">
     <div class="kicker"><b>[09]</b>Desventajas</div>
-    <h1>Limitaciones y desventajas</h1>
-    <p style="margin-top:20px">Aunque es eficiente, sus suposiciones pueden afectar la precisión de las predicciones.</p>
-    <div class="cols" style="grid-template-columns:1.5fr 1fr;margin-top:32px;gap:56px">
-      <div class="rows" style="--c:60px;align-self:start">
-        <div class="row" style="padding:16px 0"><span class="k accent">01</span><p style="font-size:28px"><strong>Supone independencia entre características.</strong> Algo que no siempre ocurre en situaciones reales.</p></div>
-        <div class="row" style="padding:16px 0"><span class="k accent">02</span><p style="font-size:28px"><strong>Puede perder información del contexto.</strong> En modelos basados en frecuencias de palabras, el orden y las relaciones entre palabras no se representan.</p></div>
-        <div class="row" style="padding:16px 0"><span class="k accent">03</span><p style="font-size:28px"><strong>Problema de probabilidad cero.</strong> Una característica ausente en el entrenamiento puede recibir probabilidad cero. Se corrige con suavizado.</p></div>
-        <div class="row" style="padding:16px 0"><span class="k accent">04</span><p style="font-size:28px"><strong>Limitaciones en problemas complejos.</strong> Menor desempeño cuando existen relaciones importantes entre características.</p></div>
-      </div>
-      <div class="panel" style="align-self:start">
-        <h2 style="margin-bottom:20px">Ejemplo: el contexto cambia el significado</h2>
-        <p class="mono" style="color:var(--ink);font-size:28px">"La película es buena"</p>
-        <p class="mono" style="font-size:21px;color:var(--ink-3);text-transform:uppercase;margin:4px 0 22px">→ Positivo</p>
-        <p class="mono" style="color:var(--ink);font-size:28px">"La película no es buena"</p>
-        <p class="mono accent" style="font-size:21px;text-transform:uppercase;margin:4px 0 22px">→ Negativo</p>
-        <p style="font-size:25px;line-height:1.45">Ilustra una posible dificultad para un clasificador basado en palabras individuales. No significa que Naive Bayes siempre clasifique mal las negaciones.</p>
-      </div>
+    <h1>Desventajas de Naive Bayes</h1>
+    <p style="margin-top:20px">Aunque es un algoritmo rápido y sencillo, presenta algunas limitaciones que pueden afectar sus resultados.</p>
+    <div class="rows drawbacks" style="--c:60px;margin-top:24px">
+      <div class="row"><span class="k accent">01</span><div><h2>Supone que los datos son independientes</h2><p>Analiza cada característica como si no estuviera relacionada con las demás. Sin embargo, en la realidad muchas características dependen unas de otras, lo que puede afectar las predicciones.</p></div></div>
+      <div class="row"><span class="k accent">02</span><div><h2>Puede tener dificultades para comprender el contexto</h2><p>Al clasificar textos usando palabras individuales, puede no interpretar correctamente frases cuyo significado cambia por el orden de las palabras o por una negación.</p><p class="example">Ejemplo: "La película es buena" y "La película no es buena".</p></div></div>
+      <div class="row"><span class="k accent">03</span><div><h2>Puede tener problemas con datos que no conoce</h2><p>Si durante el entrenamiento no encuentra una característica dentro de cierta categoría, puede asignarle una probabilidad de cero. Existen técnicas para corregir este problema.</p></div></div>
+      <div class="row"><span class="k accent">04</span><div><h2>No siempre es el más preciso</h2><p>En problemas donde es importante analizar las relaciones entre diferentes características, otros algoritmos pueden obtener mejores resultados.</p></div></div>
     </div>
     <canvas class="slide-cat" id="cat-mirada" width="726" height="550" role="img" aria-label="Gato mirando de reojo"></canvas>
   </section>
